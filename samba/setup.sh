@@ -1,10 +1,27 @@
 #!/usr/bin/env bash
 # description: setup samba for logged in user and creat shared folder "shared"
 
-# update package indexes
-sudo apt update -y
-# install samba
-sudo apt install samba -y
+if [[ -f /etc/os-release ]]; then
+  . /etc/os-release
+
+  case "$ID_LIKE" in
+    debian)
+      sudo apt update -y && sudo apt install -y samba
+
+      # allow external access through firewall
+      sudo ufw allow samba
+
+      ;;
+    fedora)
+      sudo dnf install -y samba
+
+      # make adjustments in firewall
+      sudo firewall-cmd --add-service=samba --permanent
+      sudo firewall-cmd --reload
+      ;;
+  esac
+
+fi
 
 # create a folder on local directory to share
 mkdir -p /home/$USER/shared && chmod 777 /home/$USER/shared
@@ -31,8 +48,6 @@ sudo smbpasswd -a $USER
 sudo systemctl restart smbd 
 sudo systemctl restart nmbd
 
-# allow external access through firewall
-sudo ufw allow samba
 
 
 cat <<EOF
