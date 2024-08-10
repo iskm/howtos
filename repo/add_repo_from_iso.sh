@@ -12,7 +12,7 @@ sudo dd if=$if of=$of bs=1M status='progress'
 
 # Automount iso contents to repo_location to have available to machine
 # unquoted delimiter in the here doc allows variable substitution
-sudo cat >> /etc/fstab <<EOF
+sudo tee /etc/fstab <<EOF
 $of     $repo_location          iso9660         defaults 0 0
 EOF
 
@@ -22,14 +22,14 @@ ls $repo_location
 
 # Assumes a fedora family OS but similar changes can be made in debian family
 # Makes dnf aware of newly available repos 
-sudo cat > /etc/yum.repos.d/base.repo <<EOF
+sudo tee /etc/yum.repos.d/base.repo <<EOF
 [BaseOS]
 name=BaseOS
 baseurl=file://$repo_location/BaseOS
 gpgcheck=0
 EOF
 
-sudo cat > /etc/yum.repos.d/appstream.repo <<EOF
+sudo tee /etc/yum.repos.d/appstream.repo <<EOF
 [AppStream]
 name=AppStream
 baseurl=file://$repo_location/AppStream
