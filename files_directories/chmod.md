@@ -2,6 +2,7 @@ We are aware of permissions for the owner(u), group(g), and other(o), however
 the set-uid, set-gid and sticky bit are other special permissions.
 
 | setting | description |
+| ------  | ----------- |
 | set-uid | setting uid on an executable file allows the file to be executed
 with the original owners permissions.e.g.A script owned by root is executed
 with root priviledges when run by an ordinary user|
