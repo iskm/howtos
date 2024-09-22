@@ -1,7 +1,7 @@
 To work with lvm make sure lvm packages are installed on your system. If you
 are adding an lvm partition manually follow the steps below.
 Make sure there's enough unallocated space. Figure out the extent size, lets
-say ==8M== chunks and we'll go for ==100== of these at least. Extents are the smallest
+say **8M** chunks and we'll go for **100** of these at least. Extents are the smallest
 divisible units in a lvm file system.
 
 *** Create LVM volume group and a logical volume from a normal partition ***
@@ -18,7 +18,7 @@ mkfs.ext4 /dev/volume_name/scratch    # formats the logical volume to ext4
 ```
 
 After volume is created, it needs to be mounted. You can simply create
-a mountpoint `mkdir /scratch` or wherever, then edit ==/etc/fstab== to append
+a mountpoint `mkdir /scratch` or wherever, then edit **/etc/fstab** to append
 the volume likes so:
 ```
 /dev/volume_name/scratch    /scratch    ext4    defaults    0 0
@@ -35,5 +35,5 @@ We can use lvextend to add space to logical volume like so:
 lvextend -r -L +1G /dev/volume_name/scratch
 
 ```
-==lvresize== adds more flexibility allowing you to shrink the volume.
+**lvresize** adds more flexibility allowing you to shrink the volume.
 
