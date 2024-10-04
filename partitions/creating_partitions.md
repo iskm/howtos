@@ -9,6 +9,7 @@ where size can be +1G, +10G, +500M
 Run fdisk on your device `fdisk /dev/vda` and use the following core options to
 navigate
 | flag | Description |
+| ---  | --- |
 | p | lists all partitions currently on the device |
 | n | starts prompts to create new partition |
 | e | create extended partition applicable to mbr whose max is 4 primary|

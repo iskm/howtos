@@ -4,7 +4,7 @@ Make sure there's enough unallocated space. Figure out the extent size, lets
 say **8M** chunks and we'll go for **100** of these at least. Extents are the smallest
 divisible units in a lvm file system.
 
-*** Create LVM volume group and a logical volume from a normal partition ***
+### Create LVM volume group and a logical volume from a normal partition
 ```
 lsblk     # identify device and partition
 fdisk /dev/sda   # '/dev/sda' is the device we'll be working with
